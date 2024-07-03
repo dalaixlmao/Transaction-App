@@ -1,25 +1,18 @@
+import { Center } from "./center";
+
 export function Card({
-  className,
   title,
   children,
-  href,
 }: {
-  className?: string;
   title: string;
-  children: React.ReactNode;
-  href: string;
+  children?: React.ReactNode;
 }): JSX.Element {
   return (
-    <a
-      className={className}
-      href={`${href}?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <h2 className="text-sm">
-        {title} <span>-&gt;</span>
-      </h2>
-      <p>{children}</p>
-    </a>
+    <div className="p-4 rounded-xl bg-[#e0e0e0] shadow-custom">
+      <div className="text-xl font-medium pb-2 border-b border-gray-400">{title}</div>
+      <div>
+        <Center>{children}</Center>
+      </div>
+    </div>
   );
 }
