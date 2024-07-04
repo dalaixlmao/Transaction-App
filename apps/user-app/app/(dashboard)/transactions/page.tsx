@@ -1,5 +1,56 @@
-export default function (){
-    return <div>
-        Transaction it is
+import { OnRampTransactions } from "../../../components/OnRampTransaction";
+import prisma from "@repo/db/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../lib/auth";
+import Transactions from "../../../components/Transactions";
+
+export default async function () {
+  const session = await getServerSession(authOptions);
+  const userId = Number(session.user?.id);
+  console.log(userId);
+
+  const transaction = await prisma.p2pTransfer.findMany({
+    where: { OR: [{ fromUserId: userId }, { toUserId: userId }] },
+    select: {
+      fromUser: true,
+      toUser: true,
+      amount: true,
+      timestamp: true,
+    },
+  });
+
+  const props = transaction.map((elem) => {
+    return {
+      amount: elem.amount,
+      sentOrReceived: receiveOrSend(
+        Number(elem.toUser.id),
+        Number(elem.fromUser.id)
+      ),
+      sentOrReceivedUser:
+        (receiveOrSend(Number(elem.toUser.id), Number(elem.fromUser.id)) ==
+        "sent"
+          ? elem.toUser.name
+          : elem.fromUser.name) || "",
+          date: elem.timestamp
+    }
+  });
+
+  console.log(props)
+
+  // a ---->  b   (a is sender b is receiver)
+  function receiveOrSend(a: Number, b: Number) {
+    if (b == userId) return "sent";
+    return "received";
+  }
+
+  return (
+    <div className="w-full h-screen">
+      <div className="flex flex-col">
+        <div className="text-4xl font-bold text-violet-500">Transactions</div>
+        <div className="lg:w-1/3 m-5">
+           <Transactions transactions={props}/>
+        </div>
+      </div>
     </div>
+  );
 }
