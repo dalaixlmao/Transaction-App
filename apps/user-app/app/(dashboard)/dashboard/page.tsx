@@ -1,17 +1,56 @@
 import { Card } from "@repo/ui/card";
 import BalanceChart from "../../../components/BalanceChart";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../lib/auth";
+import prisma from "@repo/db/client";
 
-export default function (){
+export default async function () {
+  const session = await getServerSession(authOptions);
+  const userId = Number(session.user?.id);
 
+  const balance = await prisma.balance.findUnique({
+    where: { userId: userId },
+  });
+  const currentBalance = balance?.amount || 0;
+  const transactions = await prisma.p2pTransfer.findMany({
+    where: {
+      OR: [{ fromUserId: userId }, { toUserId: userId }],
+    },
+    select: {
+      fromUserId: true,
+      toUserId: true,
+      amount: true,
+      timestamp: true,
+    },
+  });
 
+  transactions.sort((a, b) => {
+    return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+  });
 
-    return <div className="w-full h-screen">
-    <div className="flex flex-col">
-      <div className="text-4xl font-bold text-violet-500">Dashboard</div>
-      <div className="lg:w-1/3 m-5">
-      
-      <BalanceChart />
+  const onRamp = await prisma.onRampTransaction.findMany({
+    where: { userId: userId, status: "Success" },
+    select: { startTime: true, amount: true },
+  });
+
+  function receiveOrSend(a: Number, b: Number) {
+    if (b == userId) return "sent";
+    return "received";
+  }
+
+  return (
+    <div className="w-screen h-screen">
+      <div className="flex flex-col w-full h-full md:items-start items-center">
+        <div className="w-full text-4xl font-bold text-violet-500 md:text-left text-center">Dashboard</div>
+        <div className="md:w-4/5 w-11/12 md:h-4/5 md:m-5 flex flex-row md:justify-start justify-center mt-4">
+          <BalanceChart
+            balances={transactions}
+            currentBalance={currentBalance}
+            userId={userId}
+            onRamp={onRamp}
+          />
+        </div>
       </div>
     </div>
-  </div>
+  );
 }

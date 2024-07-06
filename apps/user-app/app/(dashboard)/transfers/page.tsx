@@ -40,13 +40,15 @@ export default async function () {
 
   return (
     <div className="w-screen">
-      <div className="flex flex-col">
-        <div className="text-4xl font-bold text-violet-500">Transfer</div>
-        <div className="flex lg:flex-row flex-col w-full justify-between">
-          <div className="lg:w-1/2 w-full p-4">
+      <div className="text-4xl font-bold text-violet-500 md:text-left text-center">
+        Transfer
+      </div>
+      <div className="flex flex-col w-full">
+        <div className="flex lg:flex-row flex-col w-full">
+          <div className="lg:w-2/5 w-full p-4">
             <AddMoney />
           </div>
-          <div className="lg:w-1/2 w-full p-4">
+          <div className="lg:w-2/5 w-full p-4">
             <div className="pb-8">
               {" "}
               <BalanceCard amount={balance.amount} locked={balance.locked} />

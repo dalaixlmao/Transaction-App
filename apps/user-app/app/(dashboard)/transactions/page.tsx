@@ -44,10 +44,10 @@ export default async function () {
   }
 
   return (
-    <div className="w-full h-screen">
-      <div className="flex flex-col">
-        <div className="text-4xl font-bold text-violet-500">Transactions</div>
-        <div className="lg:w-1/3 m-5">
+    <div className="w-screen h-screen">
+      <div className="flex flex-col w-full h-full">
+        <div className="text-4xl font-bold text-violet-500 md:text-left text-center">Transactions</div>
+        <div className="lg:w-1/3 w-full mt-5 md:ml-5">
            <Transactions transactions={props}/>
         </div>
       </div>
