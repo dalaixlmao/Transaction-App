@@ -7,6 +7,10 @@ COPY package.json package-lock.json turbo.json tsconfig.json ./
 COPY apps ./apps
 COPY packages ./packages
 
+# Set environment variables
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
 # Update npm to the latest version
 RUN npm install -g npm@latest
 
