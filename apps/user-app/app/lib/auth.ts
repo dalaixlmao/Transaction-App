@@ -1,4 +1,4 @@
-import db from "@repo/db/client";
+import prisma from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import z from "zod";
@@ -50,7 +50,7 @@ export const authOptions = {
 
         if (!status.success) return null;
 
-        const existingUser = await db.user.findFirst({
+        const existingUser = await prisma.user.findFirst({
           where: {
             number: credentials.phone,
           },
@@ -70,7 +70,7 @@ export const authOptions = {
           }
         }
           try {
-            const newUser = await db.user.create({
+            const newUser = await prisma.user.create({
               data: {
                 name: credentials.name,
                 password: hashedPassword,
@@ -79,7 +79,7 @@ export const authOptions = {
               },
             });
 
-            const balance = await db.balance.create({
+            const balance = await prisma.balance.create({
                 data:{
                     userId:newUser.id,
                     amount: (Math.random()*1000000),
