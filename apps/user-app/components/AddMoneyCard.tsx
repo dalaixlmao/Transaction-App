@@ -26,7 +26,7 @@ export function AddMoney() {
       <Card title="Add Money">
         <TextInput
           label={"Amount"}
-          placeholder={"Enter amount to transfer"}
+          placeholder={"Enter amount to be transfered"}
           onChange={(val) => {
             setValue(Number(val));
           }}
