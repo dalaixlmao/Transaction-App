@@ -3,7 +3,7 @@ name: Build and Deploy to Docker Hub
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-push:
@@ -28,3 +28,15 @@ jobs:
 
     - name: Verify Pushed Image
       run: docker pull dalaixlmao/transaction-app-user:latest
+      
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull dalaixlmao/transaction-app-user:latest
+          sudo docker stop transaction-app-user || true
+          sudo docker rm transaction-app-user || true
+          sudo docker run -e DATABASE_URL=${{ secrets.DATABASE_URL }} -d --name transaction-app-user -p 3005:3000 dalaixlmao/transaction-app-user:latest
