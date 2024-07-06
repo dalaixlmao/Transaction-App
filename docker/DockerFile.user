@@ -7,11 +7,14 @@ COPY package.json package-lock.json turbo.json tsconfig.json ./
 COPY apps ./apps
 COPY packages ./packages
 
+# Update npm to the latest version
+RUN npm install -g npm@latest
+
 # Install dependencies
 RUN npm install
 
 # Generate Prisma client
-RUN npm run generate-prisma
+RUN npm run db:generate
 
 # Build only the user-app
 RUN npm run build --filter=user-app
