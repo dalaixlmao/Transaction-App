@@ -25,8 +25,8 @@ jobs:
         file: ./docker/DockerFile.user
         push: true
         tags: dalaixlmao/transaction-app-user:latest
-      env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        build-args: 
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     - name: Verify Pushed Image
       run: docker pull dalaixlmao/transaction-app-user:latest
