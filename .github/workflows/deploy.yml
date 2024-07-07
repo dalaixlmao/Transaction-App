@@ -42,3 +42,5 @@ jobs:
           sudo docker stop transaction-app-user || true
           sudo docker rm transaction-app-user || true
           sudo docker run -e DATABASE_URL=${{ secrets.DATABASE_URL }} -d --name transaction-app-user -p 3005:3000 dalaixlmao/transaction-app-user:latest
+          sudo docker exec transaction-app-user npx prisma generate
+          sudo docker exec transaction-app-user npx prisma migrate deploy
