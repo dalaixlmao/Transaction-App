@@ -41,3 +41,4 @@ jobs:
           sudo docker rm transaction-app-user || true
           sudo docker run -e DATABASE_URL=${{ secrets.DATABASE_URL }} -d --name transaction-app-user -p 3005:3000 dalaixlmao/transaction-app-user:latest
           sudo docker exec transaction-app-user npm run db:generate
+          sudo docker exec transaction-app-user npm run db:migrate
