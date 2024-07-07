@@ -13,10 +13,6 @@ RUN npm install -g npm@latest
 # Install dependencies
 RUN npm install
 
-# Set environment variable for Prisma
-ARG DATABASE_URL
-ENV DATABASE_URL=${DATABASE_URL}
-
 # Generate Prisma client
 RUN npm run db:generate
 
