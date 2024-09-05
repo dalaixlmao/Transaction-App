@@ -1,81 +1,109 @@
-# Turborepo starter
+# Wallet Management App
 
-This is an official starter Turborepo.
+## Overview
 
-## Using this example
+This is a **wallet management application** built with a modern tech stack, enabling users to manage wallets, perform P2P transfers, and track transaction history. It implements ACID-compliant transactions using PostgreSQL and Prisma ORM to ensure data integrity. The application includes various screens to manage wallets, view balances, track transactions, and transfer funds securely.
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## Features
+
+- **User Wallet Management:** Track wallet balance in real-time.
+- **Peer-to-Peer (P2P) Transfers:** Securely transfer money between users.
+- **Transaction History:** Detailed view of all transactions.
+- **On-Ramp Transactions:** Safely transfer funds from a bank to the wallet via webhook handling.
+- **ACID Compliance:** Ensures atomic, consistent, isolated, and durable transactions.
+- **Monorepo Structure:** Efficient management using Turborepo.
+- **Containerized:** Ready for deployment with Docker.
+
+---
+
+## Tech Stack
+
+- **Frontend:** [Next.js](https://nextjs.org/) with TypeScript
+- **Backend API:** [Express.js](https://expressjs.com/) with TypeScript
+- **Database:** [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM](https://www.prisma.io/)
+- **Monorepo Management:** [Turborepo](https://turbo.build/)
+- **Authentication:** [NextAuth.js](https://next-auth.js.org/) with JWT
+- **Input Validation:** [Zod](https://zod.dev/)
+- **CI/CD Pipeline:** GitHub Actions for automated testing and deployment
+
+---
+
+## Screenshots
+
+1. **Dashboard**  
+   ![Dashboard Screenshot](./screenshots/dashboard.png)
+   - View real-time wallet balance and recent activities.
+
+2. **Transactions**  
+   ![Transactions Screenshot](./screenshots/transactions.png)
+   - Detailed list of all wallet transactions with filter and search options.
+
+3. **Transfers**  
+   ![Transfers Screenshot](./screenshots/transfers.png)
+   - Transfer funds between wallets.
+
+4. **P2P Transfers**  
+   ![P2PTransfers Screenshot](./screenshots/p2ptransfers.png)
+   - Perform peer-to-peer money transfers securely and efficiently.
+
+---
+
+## Installation
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) >= 16.x
+- [pnpm](https://pnpm.io/) (package manager)
+- [Docker](https://www.docker.com/) (Optional)
+- PostgreSQL database
+
+### Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/wallet-management-app.git
+   cd wallet-management-app
+2. Install dependencies using Turborepo:
+
+   ```bash
+   npm install
+3. Set up environment variables:
+   - Create a .env file in the root directory with the following variables:
+     ```bash
+     DATABASE_URL=postgresql://username:password@localhost:5432/wallet_db
+     NEXTAUTH_SECRET=your-secret-key
+     NEXTAUTH_URL=http://localhost:3000
+4. Apply database migrations:
+   ```bash
+   npm run db:migrate
+5. Apply database generate commad:
+   ```bash
+   npm run db:generate
+6. Start the development server:
+   ```bash
+   npm run dev
+
+## Project Structure
+```bash
+├── apps
+│   ├── user-app          # Next.js application for the frontend
+│   ├── webhook           # Express.js server for handling webhooks
+├── packages
+│   ├── db                # Prisma ORM setup for database
+│   ├── ui                # Reusable UI components
+│   ├── eslint-config     # Shared ESLint configuration
+│   ├── typescript-config # Shared TypeScript configurations
+└── turbo.json            # Turborepo configuration
 ```
 
-## What's inside?
+## Usage
+- Dashboard: View your wallet's balance and activity at a glance.
+- Transactions: Check all transaction details, including date, amount, and status.
+- Transfers: Transfer money between your wallets.
+- P2P Transfers: Transfer money to other users securely and track these transfers in real-time.
 
-This Turborepo includes the following packages/apps:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+   
+   
