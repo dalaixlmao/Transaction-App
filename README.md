@@ -55,7 +55,7 @@ This is a **wallet management application** built with a modern tech stack, enab
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) >= 16.x
-- [pnpm](https://pnpm.io/) (package manager)
+- [npm](https://www.npmjs.com) (package manager)
 - [Docker](https://www.docker.com/) (Optional)
 - PostgreSQL database
 
@@ -63,7 +63,7 @@ This is a **wallet management application** built with a modern tech stack, enab
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/wallet-management-app.git
+   git clone https://github.com/dalaixlmao/Transaction-App.git
    cd wallet-management-app
 2. Install dependencies using Turborepo:
 
