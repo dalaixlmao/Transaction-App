@@ -7,9 +7,9 @@ async function main() {
     where: { number: "111111" },
     update: {},
     create: {
-      email: "anubhavaaryan13@gmail.com",
-      name: "Alice Kumari",
-      number: "11111111",
+      email: "aaryan@gmail.com",
+      name: "Alice Kumar",
+      number: "1111111111",
       password: await bcrypt.hash("abcdefghij",10),
       Balance: {
         create: {
@@ -30,12 +30,12 @@ async function main() {
   });
 
   const bob = await prisma.user.upsert({
-    where: { number: "5332543565" },
+    where: { number: "2222222222" },
     update: {},
     create: {
       email: "anubhav@gmail.com",
       name: "Bob Kumar",
-      number: "5332543565",
+      number: "2222222222",
       password: await bcrypt.hash("abcdefghijkl",10),
       Balance: {
         create: {
