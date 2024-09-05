@@ -1,7 +1,5 @@
 # Wallet Management App
 
-![Project Logo](./assets/logo.png)
-
 ## Overview
 
 This is a **wallet management application** built with a modern tech stack, enabling users to manage wallets, perform P2P transfers, and track transaction history. It implements ACID-compliant transactions using PostgreSQL and Prisma ORM to ensure data integrity. The application includes various screens to manage wallets, view balances, track transactions, and transfer funds securely.
@@ -88,17 +86,18 @@ This is a **wallet management application** built with a modern tech stack, enab
    npm run dev
 
 ## Project Structure
-  ```bash
-  ├── apps
-  │   ├── user-app          # Next.js application for the frontend
-  │   ├── express-server    # Express.js server for handling webhooks
-  │   ├── worker-service    # (Optional) Worker service for handling background jobs
-  ├── packages
-  │   ├── db                # Prisma ORM setup for database
-  │   ├── ui                # Reusable UI components
-  │   ├── eslint-config     # Shared ESLint configuration
-  │   ├── typescript-config # Shared TypeScript configurations
-  └── turbo.json            # Turborepo configuration
+```bash
+├── apps
+│   ├── user-app          # Next.js application for the frontend
+│   ├── express-server    # Express.js server for handling webhooks
+│   ├── worker-service    # (Optional) Worker service for handling background jobs
+├── packages
+│   ├── db                # Prisma ORM setup for database
+│   ├── ui                # Reusable UI components
+│   ├── eslint-config     # Shared ESLint configuration
+│   ├── typescript-config # Shared TypeScript configurations
+└── turbo.json            # Turborepo configuration
+```
 
 ## Usage
 - Dashboard: View your wallet's balance and activity at a glance.
