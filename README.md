@@ -14,11 +14,11 @@ This is a **wallet management application** built with a modern tech stack, enab
 
 2. **Transactions**  
    ![Transactions Screenshot](./screenshots/transactions.png)
-   - Detailed list of all wallet transactions with filter and search options.
+   - Detailed list of all peer to peer transactions.
 
 3. **Transfers**  
    ![Transfers Screenshot](./screenshots/transfers.png)
-   - Transfer funds between wallets.
+   - Transfer funds to wallet.
 
 4. **P2P Transfers**  
    ![P2PTransfers Screenshot](./screenshots/p2ptransfers.png)
