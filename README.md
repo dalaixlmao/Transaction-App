@@ -89,8 +89,7 @@ This is a **wallet management application** built with a modern tech stack, enab
 ```bash
 ├── apps
 │   ├── user-app          # Next.js application for the frontend
-│   ├── express-server    # Express.js server for handling webhooks
-│   ├── worker-service    # (Optional) Worker service for handling background jobs
+│   ├── webhook           # Express.js server for handling webhooks
 ├── packages
 │   ├── db                # Prisma ORM setup for database
 │   ├── ui                # Reusable UI components
